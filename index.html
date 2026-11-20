@@ -495,6 +495,19 @@ dialog{width:min(92vw,480px);max-width:92vw;max-height:88svh;overflow:auto;paddi
 .paper .close{margin-top:2cqw;color:#795448}
 </style><style>
 .card{width:min(100vw,56.25svh,520px);aspect-ratio:9/16;min-height:0}
+/* Keep the invitation at 9:16 and extend its paper and covers to the phone edges. */
+@media (max-width:520px) and (max-aspect-ratio:9/16) {
+  html { background:#fff1e1; overflow-x:clip; }
+  body { min-height:100dvh; background:#fff1e1; overflow:clip; }
+  .card {
+    width:100vw;
+    --bleed:min(0px,calc((100vw * 16 / 9 - 100dvh) / 2));
+    overflow:visible;
+    box-shadow:none;
+  }
+  .card > :is(.paper,.door,.flash,.confetti) { inset-block:var(--bleed); }
+  .card > .paper { overflow:clip; }
+}
 .paper{padding:0}
 
 .paper .birthday{margin-bottom:0}
